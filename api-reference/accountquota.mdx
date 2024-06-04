@@ -1,0 +1,71 @@
+---
+title: "Get Account Quota"
+sidebarTitle: "Get Quota"
+api: "GET /api/account/quota"
+---
+
+This endpoint retrieves the account quota details for a company associated with a given API key.
+
+### Headers
+
+<ParamField header="x-api-key" type="string" required>
+  This is the API key associated with the company.
+</ParamField>
+
+### Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the call was successful. True if successful, false if not.
+</ResponseField>
+
+<ResponseField name="result" type="object" optional>
+
+The details of the account quota.
+
+<Expandable title="Toggle object">
+
+<ResponseField name="total_quota" type="number">
+  The total quota limit for API requests.
+</ResponseField>
+
+<ResponseField name="quota_used" type="number">
+  The number of API requests used.
+</ResponseField>
+
+<ResponseField name="quota_remaining" type="number">
+  The remaining quota available for API requests.
+</ResponseField>
+
+<ResponseField name="plan_name" type="string">
+  The name of the plan associated with the company.
+</ResponseField>
+
+</Expandable>
+
+</ResponseField>
+
+<RequestExample>
+
+```bash Example Request
+curl --location --request GET 'https://staging.screenshotbee.com/api/account/quota' \
+--header 'x-api-key: your_api_key_here'
+
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+  "success": true,
+  "result": {
+    "total_quota": 1000,
+    "quota_used": 250,
+    "quota_remaining": 750,
+    "plan_name": "BASIC"
+  }
+}
+```
+
+</ResponseExample>
